@@ -1,0 +1,13 @@
+name: CI
+
+on:
+  push:
+
+jobs:
+  run-ci:
+    name: "Run CI script"
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+      - name: Run Script
+        run: ./ci.sh
