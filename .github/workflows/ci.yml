@@ -5,6 +5,7 @@ on:
 
 jobs:
   run-ci:
+    runs-on: ubuntu-latest
     name: "Run CI script"
     steps:
       - name: Checkout Repo
