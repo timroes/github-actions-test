@@ -27,4 +27,17 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: ${{ steps.getref.output.repo }}
+          ref: ${{ steps.getref.output.ref }}
+      - name: Slash Command Dispatch
+        id: scd
+        uses: peter-evans/slash-command-dispatch@v2
+        with:
+          commands: |
+            ci
+          static-args: |
+            ref=${{ steps.getref.outputs.ref }}
+            repo=${{ steps.getref.outputs.repo }}
+            comment-id=${{ github.event.comment.id }}
+          dispatch-type: workflow
+   
 
