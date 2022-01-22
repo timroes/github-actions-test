@@ -5,7 +5,6 @@ on:
 jobs:
   command:
     runs-on: ubuntu-latest
-    if: github.event.issue.pull_request
     steps:
       - name: Debug
         uses: hmarr/debug-action@v2
@@ -32,9 +31,11 @@ jobs:
         id: scd
         uses: peter-evans/slash-command-dispatch@v2
         with:
-          token: ${{ github.token }}
+          token: ${{ secrets.PAT }}
+          issue-type: pull-request
           commands: |
             ci
+          # Must pass repo/gitref to all (can't name repository or ref - would overlap with specific parameters where to run the job)
           static-args: |
             repo=${{ steps.getref.outputs.repo }}
             gitref=${{ steps.getref.outputs.ref }}

@@ -1,0 +1,15 @@
+name: CI on PR
+
+on:
+  pull_request:
+  workflow_call:
+
+jobs:
+  fake-ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run CI
+        run: |
+          echo "We would now be running CI"
+      - name: Debug
+        uses: hmarr/debug-action@v2
