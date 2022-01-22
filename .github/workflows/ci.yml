@@ -2,14 +2,12 @@ name: CI
 
 on:
   push:
-  pull_request:
+    branches:
+      - main
 
 jobs:
   run-ci:
     runs-on: ubuntu-latest
-    name: "Run CI script"
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v2
-      - name: Run Script
-        run: ./ci.sh
+    if: github.repository == 'timroes/github-actions-test'
+    name: "Trigger CI run"
+    uses: ./.github/workflows/ci-command@main

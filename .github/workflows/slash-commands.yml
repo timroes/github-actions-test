@@ -35,6 +35,7 @@ jobs:
           issue-type: pull-request
           commands: |
             ci
+          # Must pass repo/gitref to all (can't name repository or ref - would overlap with specific parameters where to run the job)
           static-args: |
             repo=${{ steps.getref.outputs.repo }}
             gitref=${{ steps.getref.outputs.ref }}
