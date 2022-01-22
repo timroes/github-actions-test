@@ -23,4 +23,8 @@ jobs:
         run: |
           echo "Ref will be: ${{ steps.getref.outputs.ref }}"
           echo "Repo will be: ${{ steps.getref.outputs.repo }}"
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          repository: ${{ steps.getref.output.repo }}
 
