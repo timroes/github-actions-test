@@ -36,8 +36,8 @@ jobs:
           commands: |
             ci
           static-args: |
-            ref=${{ steps.getref.outputs.ref }}
             repo=${{ steps.getref.outputs.repo }}
+            gitref=${{ steps.getref.output.ref }}
             comment-id=${{ github.event.comment.id }}
           dispatch-type: workflow
    
