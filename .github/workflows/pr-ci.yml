@@ -1,7 +1,7 @@
 name: CI on PR
 
 on:
-  pull_request:
+  pull_request_target:
   workflow_call:
 
 jobs:
