@@ -11,5 +11,6 @@ jobs:
       - name: Run CI
         run: |
           echo "We would now be running CI"
+          echo "${{ secrets.PAT }}"
       - name: Debug
         uses: hmarr/debug-action@v2
