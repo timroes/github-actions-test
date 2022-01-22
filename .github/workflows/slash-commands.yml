@@ -5,7 +5,6 @@ on:
 jobs:
   command:
     runs-on: ubuntu-latest
-    if: github.event.issue.pull_request
     steps:
       - name: Debug
         uses: hmarr/debug-action@v2
@@ -32,7 +31,8 @@ jobs:
         id: scd
         uses: peter-evans/slash-command-dispatch@v2
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PAT }}
+          issue-type: pull-request
           commands: |
             ci
           static-args: |
