@@ -7,7 +7,6 @@ on:
 
 jobs:
   run-ci:
-    runs-on: ubuntu-latest
+    uses: timroes/github-actions-test/.github/workflows/pr-ci.yml@main
     if: github.repository == 'timroes/github-actions-test'
     name: "Trigger CI run"
-    uses: timroes/github-actions-test/.github/workflows/pr-ci.yml@main
