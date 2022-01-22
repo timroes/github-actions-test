@@ -9,6 +9,10 @@ jobs:
     steps:
       - name: Debug
         uses: hmarr/debug-action@v2
+      - name: Additional debug
+        run: |
+          echo "${{ github.repository }}"
+          echo "${{ github.ref }}"
       - name: Get PR Ref
         id: getref
         run: |
