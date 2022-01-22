@@ -1,5 +1,7 @@
 name: CI slash command
 on:
+  schedule:
+    - cron: '*/5 * * * *'
   workflow_dispatch:
     inputs:
       repo:
