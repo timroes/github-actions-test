@@ -1,0 +1,44 @@
+name: Slash Command
+on:
+  issue_comment:
+    types: [created]
+jobs:
+  command:
+    runs-on: ubuntu-latest
+    if: github.event.issue.pull_request
+    steps:
+      - name: Debug
+        uses: hmarr/debug-action@v2
+      - name: Additional debug
+        run: |
+          echo "${{ github.repository }}"
+          echo "${{ github.ref }}"
+      - name: Get PR Ref
+        id: getref
+        run: |
+          pr_info="$(curl ${{ github.event.issue.pull_request.url }})"
+          echo ::set-output name=ref::"$(echo $pr_info | jq -r '.head.ref')"
+          echo ::set-output name=repo::"$(echo $pr_info | jq -r '.head.repo.full_name')"
+      - name: Check outputs
+        run: |
+          echo "Ref will be: ${{ steps.getref.outputs.ref }}"
+          echo "Repo will be: ${{ steps.getref.outputs.repo }}"
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          repository: ${{ steps.getref.output.repo }}
+          ref: ${{ steps.getref.output.ref }}
+      - name: Slash Command Dispatch
+        id: scd
+        uses: peter-evans/slash-command-dispatch@v2
+        with:
+          token: ${{ github.token }}
+          commands: |
+            ci
+          static-args: |
+            repo=${{ steps.getref.outputs.repo }}
+            gitref=${{ steps.getref.output.ref }}
+            comment-id=${{ github.event.comment.id }}
+          dispatch-type: workflow
+   
+
