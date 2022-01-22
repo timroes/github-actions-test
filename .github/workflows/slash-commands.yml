@@ -12,5 +12,11 @@ jobs:
       - name: Get PR Ref
         id: getref
         run: |
-          echo "$(curl ${{ github.event.issue.pull_request.url }})"
+          pr_info="$(curl ${{ github.event.issue.pull_request.url }})"
+          echo ::set-output name=ref::"$(echo $pr_info | jq -r '.head.ref')"
+          echo ::set-output name=repo::"$(echo $pr_info | jq -r '.head.repo.full_name')"
+      - name: Check outputs
+        run: |
+          echo "Ref will be: ${{ steps.getref.outputs.ref }}"
+          echo "Repo will be: ${{ steps.getref.outputs.repo }}"
 
