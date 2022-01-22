@@ -1,0 +1,16 @@
+name: Slash Command
+on:
+  issue_comment:
+    types: [created]
+jobs:
+  command:
+    runs-on: ubuntu-latest
+    if: github.event.issue.pull_request
+    steps:
+      - name: Debug
+        uses: hmarr/debug-action@v2
+      - name: Get PR Ref
+        id: getref
+        run: |
+          echo "$(curl ${{ github.event.issue.pull_request.url }})"
+
