@@ -10,6 +10,6 @@ jobs:
     steps:
         - uses: jenschelkopf/issue-label-notification-action@1.3
           with:
-             message: 'cc {receipients}'
+             message: 'cc {recipients}'
              recipients: |
                   bug=@timroes
