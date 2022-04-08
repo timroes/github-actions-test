@@ -8,8 +8,9 @@ jobs:
   notify:
     runs-on: ubuntu-latest
     steps:
-        - uses: timroes/assign-to-project-action@0.0.7
+        - uses: timroes/assign-to-project-action@0.0.8
           with:
-            token: ${{ secrets.GITHUB_TOKEN }}
+            owner: airbytehq
+            token: ${{ secrets.PAT }}
             projects: |
-              documentation=1
+              documentation=8
