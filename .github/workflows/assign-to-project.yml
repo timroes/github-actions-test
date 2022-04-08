@@ -1,0 +1,15 @@
+name: Assign to project
+
+on:
+  issues:
+      types: [labeled]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+        - uses: timroes/assign-to-project-action@0.0.1
+          with:
+            token: ${{ secrets.GITHUB_TOKEN }}
+            projects: |
+              documentation=1
