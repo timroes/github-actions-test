@@ -8,7 +8,7 @@ jobs:
   notify:
     runs-on: ubuntu-latest
     steps:
-        - uses: timroes/assign-to-project-action@0.0.5
+        - uses: timroes/assign-to-project-action@0.0.6
           with:
             token: ${{ secrets.GITHUB_TOKEN }}
             projects: |
