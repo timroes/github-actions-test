@@ -8,7 +8,7 @@ jobs:
   notify:
     runs-on: ubuntu-latest
     steps:
-        - uses: timroes/assign-to-project-action@0.0.9
+        - uses: timroes/assign-to-project-action@0.0.10
           with:
             owner: airbytehq
             token: ${{ secrets.PAT }}
