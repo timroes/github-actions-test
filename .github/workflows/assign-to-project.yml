@@ -1,16 +1,25 @@
-name: Assign to project
+name: CI test
 
 on:
-  issues:
-      types: [labeled]
+  push:
+
 
 jobs:
   notify:
     runs-on: ubuntu-latest
     steps:
-        - uses: timroes/assign-to-project-action@0.0.10
-          with:
-            owner: airbytehq
-            token: ${{ secrets.PAT }}
-            projects: |
-              documentation=8
+        - name: Build step
+          run: |
+            echo "Building ..."
+            echo "oh no failed..."
+            exit 1
+        - if: failure()
+          run: |
+            echo "::error::The build was what failed!"
+        - name: Test step
+          run: |
+            echo "testing now"
+            echo "something"
+        - if: failure()
+          run: |
+            echo "::error::The test step failed!"
